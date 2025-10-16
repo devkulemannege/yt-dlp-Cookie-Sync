@@ -1,3 +1,10 @@
+'''
+Program: yt-dlp-Cookie-Sync
+Author: Ravish Devpriya Kulemannege
+Last Updated: 16.10.2025
+Available in Github.
+'''
+
 from playwright.async_api import async_playwright
 from flask import Flask, render_template_string
 import logging
