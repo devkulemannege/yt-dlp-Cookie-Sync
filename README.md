@@ -41,7 +41,9 @@ Installation and start-up will be controlled by the included `Dockerfile`. The m
         '''add code inside of function here (line 51 - 104 in updater.py)'''
     asyncio.run(update_execute()) # start async function
     ```
-    and that's it!
+    run the newly created file and that's it!
+
+**Disclaimer:** This solution does not work if the sign-in process requires a CAPTCHA to be completed.
 
 ## How it Works...
 1. **Sign in** → Uses the provided Google Account credentials.  

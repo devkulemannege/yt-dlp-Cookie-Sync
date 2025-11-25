@@ -7,12 +7,9 @@ Available in Github.
 
 from playwright.async_api import async_playwright
 from flask import Flask, render_template_string
-import logging
 import dotenv
 import asyncio
 import os
-
-logging.basicConfig(level=logging.INFO) # configuring the logger to info log levek
 
 # edit these values in creds.env before running
 dotenv.load_dotenv('creds.env')
@@ -63,7 +60,7 @@ def run_container():
         browser = context = page = cookies = ''
 
         async with async_playwright() as browser_init: 
-            logging.info('Opening browser...')
+            print('Opening browser...', flush=True)
 
             # use chrome inside of virtual display
             browser = await browser_init.chromium.launch(
@@ -79,7 +76,7 @@ def run_container():
             page = await context.new_page()
 
             # sign in to provided google account to access YouTube account
-            logging.info('Signing in...')
+            print('Signing in...', flush=True)
             await page.goto("https://accounts.google.com/signin/v2/identifier")
             await page.get_by_role('textbox').fill(EMAIL) # enter EMAIL 
             await page.get_by_text('Next').click()
@@ -90,7 +87,7 @@ def run_container():
             await page.wait_for_timeout(10000)
 
             # redirect to YouTube and get cookie as json
-            logging.info('Redirecting to YouTube for cookie extraction...')
+            print('Redirecting to YouTube for cookie extraction...', flush=True)
             await page.goto("https://www.youtube.com/") 
             await page.wait_for_timeout(5000)
 
@@ -112,7 +109,7 @@ def run_container():
 
     asyncio.run(update_execute()) # start async function
     with open(COOKIE_FILE_NAME, 'r') as f:
-        logging.info(f'Cookie file has been updated.\n\n{f.read()}') # show contents of cookiefile.txt
+        print(f'Cookie file has been updated.\n\n{f.read()}', flush=True) # show contents of cookiefile.txt
     return "Service finished running", 200
 
 if __name__ == "__main__":
