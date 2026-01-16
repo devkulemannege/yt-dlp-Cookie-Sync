@@ -9,6 +9,8 @@
 This project provides an automated solution to update YouTube cookies which are required by yt-dlp when running on an automated isolated system.
 Installation and start-up will be controlled by the included `Dockerfile`. The main Python code is `Flask` based works by listening at `Port 8080` using `Gunicorn`. 
 
+**Disclaimer:** This solution does not work if the sign-in process requires a CAPTCHA to be completed.
+
 ## Features 
 - Gunicorn listens to `Port 8080` at `0.0.0.0`
 - Simple HTML button on default route `/` to test functionality
@@ -42,8 +44,6 @@ Installation and start-up will be controlled by the included `Dockerfile`. The m
     asyncio.run(update_execute()) # start async function
     ```
     run the newly created file and that's it!
-
-**Disclaimer:** This solution does not work if the sign-in process requires a CAPTCHA to be completed.
 
 ## How it Works...
 1. **Sign in** → Uses the provided Google Account credentials.  
